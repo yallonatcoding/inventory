@@ -1,15 +1,31 @@
 {
-  "name": "inventory",
+  "name": "turborepo",
+  "description": "A Next.js + NestJS Turborepo using biome and docker compose",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types"
+    "format": "turbo run format",
+    "check": "biome check .",
+    "check:fix": "biome check . --write",
+    "check-types": "turbo run check-types",
+    "db:seed": "dotenv -e apps/api/.env -- pnpm --filter @repo/database db:seed",
+    "db:migrate": "dotenv -e apps/api/.env -- pnpm --filter @repo/database db:migrate",
+    "db:generate": "dotenv -e apps/api/.env -- pnpm --filter @repo/database db:generate"
+  },
+  "dependencies": {
+    "@repo/config": "workspace:*",
+    "@repo/database": "workspace:*",
+    "@repo/permissions": "workspace:*"
   },
   "devDependencies": {
-    "prettier": "^3.7.4",
+    "@biomejs/biome": "^2.4.7",
+    "@repo/biome-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^25.6.0",
+    "dotenv-cli": "^11.0.0",
+    "tsx": "^4.21.0",
     "turbo": "^2.8.17",
     "typescript": "5.9.2"
   },

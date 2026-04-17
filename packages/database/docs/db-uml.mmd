@@ -1,0 +1,131 @@
+erDiagram
+
+  USERS {
+    uuid id PK
+    varchar email
+    varchar password
+    varchar name
+    text image
+    boolean is_super_admin
+    timestamp email_verified_at
+  }
+
+  ROLES {
+    uuid id PK
+    varchar code
+    text description
+  }
+
+  USER_ROLES {
+    uuid id PK
+    uuid user_id FK
+    uuid role_id FK
+  }
+
+  PERMISSIONS {
+    uuid id PK
+    varchar resource
+    varchar action
+    text description
+  }
+
+  ROLE_PERMISSIONS {
+    uuid id PK
+    uuid role_id FK
+    uuid permission_id FK
+  }
+
+  USER_PERMISSIONS {
+    uuid id PK
+    uuid user_id FK
+    uuid permission_id FK
+    boolean allow
+  }
+
+  PRODUCTS {
+    uuid id PK
+    varchar name
+    varchar slug
+    varchar brand
+    text description
+  }
+
+  PRODUCT_VARIANTS {
+    uuid id PK
+    uuid product_id FK
+    varchar name
+    varchar slug
+    varchar sku
+    varchar barcode
+    varchar qrcode
+    varchar size
+    varchar color
+    decimal cost_price
+    decimal retail_price
+  }
+
+  PRODUCT_IMAGES {
+    uuid id PK
+    uuid variant_id FK
+    text url
+    varchar alt_text
+    integer order
+  }
+
+  TAGS {
+    uuid id PK
+    varchar name
+    varchar type
+  }
+
+  PRODUCT_TAGS {
+    uuid product_id FK
+    uuid tag_id FK
+  }
+
+  LOCATIONS {
+    uuid id PK
+    varchar name
+    varchar type
+  }
+
+  INVENTORY {
+    uuid id PK
+    uuid variant_id FK
+    uuid location_id FK
+    integer quantity
+  }
+
+  INVENTORY_MOVEMENTS {
+    int id PK
+    uuid variant_id FK
+    uuid from_location_id FK
+    uuid to_location_id FK
+    integer quantity
+    varchar type
+    text reason
+    varchar reference_id
+  }
+
+  USERS ||--o{ USER_ROLES : "has"
+  ROLES ||--o{ USER_ROLES : "assigned"
+
+  ROLES ||--o{ ROLE_PERMISSIONS : "has"
+  PERMISSIONS ||--o{ ROLE_PERMISSIONS : "assigned"
+
+  USERS ||--o{ USER_PERMISSIONS : "has"
+  PERMISSIONS ||--o{ USER_PERMISSIONS : "assigned"
+
+  PRODUCTS ||--o{ PRODUCT_VARIANTS : "has"
+  PRODUCT_VARIANTS ||--o{ PRODUCT_IMAGES : "has"
+
+  PRODUCTS ||--o{ PRODUCT_TAGS : "has"
+  TAGS ||--o{ PRODUCT_TAGS : "assigned"
+
+  PRODUCT_VARIANTS ||--o{ INVENTORY : "stored"
+  LOCATIONS ||--o{ INVENTORY : "contains"
+
+  PRODUCT_VARIANTS ||--o{ INVENTORY_MOVEMENTS : "moves"
+  LOCATIONS ||--o{ INVENTORY_MOVEMENTS : "from"
+  LOCATIONS ||--o{ INVENTORY_MOVEMENTS : "to"
+  

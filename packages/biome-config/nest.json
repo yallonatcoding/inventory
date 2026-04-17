@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "./base.json"
+  ],
+  "linter": {
+    "rules": {
+      "style": {
+        "noCommonJs": "off",
+        "noNamespace": "off"
+      },
+      "suspicious": {
+        "noExplicitAny": "warn"
+      }
+    }
+  }
+}

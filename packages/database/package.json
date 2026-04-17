@@ -1,0 +1,26 @@
+{
+  "name": "@repo/database",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./schema": "./schema/index.ts",
+    "./client": "./src/client.ts"
+  },
+  "dependencies": {
+    "@repo/config": "workspace:*",
+    "@repo/permissions": "workspace:*",
+    "@types/bcrypt": "^6.0.0",
+    "bcrypt": "^6.0.0",
+    "drizzle-kit": "^0.31.10",
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.0"
+  },
+  "scripts": {
+    "db:seed": "pnpm exec tsx ./src/seeder.ts",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate"
+  }
+}
