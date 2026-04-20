@@ -5,15 +5,9 @@
     "declarationMap": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "target": "ES2020",
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "types": [
-      "node"
-    ]
+    "resolveJsonModule": true
   }
 }
