@@ -1,7 +1,7 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
-import { validateDbEnv } from '@repo/config/env';
-import * as schema from '@repo/database/schema';
+import { validateDbEnv } from '@repo/config';
+import * as schema from '@repo/database';
 
 let _db: ReturnType<typeof drizzle<typeof schema>> | null = null;
 
