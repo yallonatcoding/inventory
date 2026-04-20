@@ -1,20 +1,20 @@
-import { seedSuperAdmin } from '../seeds/users.seed';
-import { seedRoles } from '../seeds/roles.seed';
-import { seedPermissions } from '../seeds/permissions.seed';
-import { seedRolePermissions } from '../seeds/role-permissions.seed';
-import { DatabaseClient } from './client';
-import { getDbEnv } from '@repo/config/env';
+import { validateSeedEnv } from '@repo/config';
+import { DatabaseClient } from '../src/client';
+import { seedRoles } from './roles.seed';
+import { seedPermissions } from './permissions.seed';
+import { seedRolePermissions } from './role-permissions.seed';
+import { seedSuperAdmin } from './users.seed';
 
 async function execute() {
-  const env = getDbEnv();
+  const env = validateSeedEnv(process.env);
   const dbClient = new DatabaseClient(env.DATABASE_URL);
 
   try {
     await dbClient.connect();
     await dbClient.client.transaction(async (tx) => {
       await seedSuperAdmin(tx);
-      await seedPermissions(tx);
       await seedRoles(tx);
+      await seedPermissions(tx);
       await seedRolePermissions(tx);
     });
 

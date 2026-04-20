@@ -1,6 +1,6 @@
 import { hash } from 'bcrypt';
-import { users } from '../schema';
-import type { DbTransaction } from '../db';
+import { users } from '../src/schema';
+import type { DbTransaction } from '../src/client';
 
 export async function seedSuperAdmin(tx: DbTransaction) {
   const email = process.env.SA_EMAIL!;

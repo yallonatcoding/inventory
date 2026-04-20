@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
-import { roles, users } from '../schema';
-import type { DbTransaction } from '../db';
+import { roles, users } from '../src/schema';
+import type { DbTransaction } from '../src/client';
 
 export async function seedRoles(tx: DbTransaction) {
   const baseRoles = ['super_admin', 'admin', 'manager', 'staff'] as const;

@@ -1,7 +1,7 @@
 import { eq } from 'drizzle-orm';
 import { BasePermissions } from '@repo/permissions/constants';
-import { permissions, users } from '../schema';
-import type { DbTransaction } from '../db';
+import { permissions, users } from '../src/schema';
+import type { DbTransaction } from '../src/client';
 
 export async function seedPermissions(tx: DbTransaction) {
   const [superAdmin] = await tx

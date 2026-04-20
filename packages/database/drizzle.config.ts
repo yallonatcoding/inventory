@@ -1,11 +1,11 @@
 import "dotenv/config";
 import { defineConfig } from 'drizzle-kit';
-import { getDbEnv } from "@repo/config/env";
+import { validateDbEnv } from "@repo/config";
 
-const env = getDbEnv();
+const env = validateDbEnv(process.env);
 
 export default defineConfig({
-  schema: './schema/index.ts',
+  schema: './src/schema/index.ts',
   out: './migrations',
   dialect: 'postgresql',
   dbCredentials: {

@@ -1,8 +1,8 @@
 import { inArray, eq } from 'drizzle-orm';
 import { RolePermissionMatrix } from '@repo/permissions/constants';
 import { toPermissionKey, buildPermission } from '@repo/permissions/helpers';
-import { roles, permissions, rolePermissions, users } from '../schema';
-import type { DbTransaction } from '../db';
+import { roles, permissions, rolePermissions, users } from '../src/schema';
+import type { DbTransaction } from '../src/client';
 
 export async function seedRolePermissions(tx: DbTransaction) {
   const roleCodes = Object.keys(RolePermissionMatrix) as Array<keyof typeof RolePermissionMatrix>;
