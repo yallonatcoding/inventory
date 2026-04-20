@@ -1,4 +1,5 @@
-import { Actions, Resources } from '@repo/permissions/constants';
+import { Actions } from './actions';
+import { Resources } from './resources';
 
 export const RolePermissionMatrix = {
   super_admin: 'ALL',

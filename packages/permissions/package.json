@@ -2,8 +2,15 @@
   "name": "@repo/permissions",
   "version": "0.0.0",
   "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./index.ts"
+    ".": "./dist/index.js",
+    "./constants": "./dist/constants/index.js",
+    "./helpers": "./dist/helpers/index.js"
+  },
+  "scripts": {
+    "build": "tsc"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*"
