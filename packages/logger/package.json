@@ -1,0 +1,23 @@
+{
+  "name": "@repo/logger",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./adapters": "./dist/adapters/index.js",
+    "./interfaces": "./dist/interfaces/index.js",
+    "./factory": "./dist/factory/index.js"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@repo/config": "workspace:*",
+    "pino": "^9.3.2"
+  },
+  "devDependencies": {
+    "@repo/typescript-config": "workspace:*"
+  }
+}
