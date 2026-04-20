@@ -1,4 +1,4 @@
-import { AuditEntity } from "../shared/audit/audit.entity";
+import { AuditEntity } from "../shared";
 
 export interface Product extends AuditEntity {
   id: string;
@@ -20,7 +20,7 @@ export interface ProductVariant extends AuditEntity {
 export interface ProductImage extends AuditEntity {
   id: string;
   url: string;
-  productId: string;
+  productVariantId: string;
 }
 
 export interface ProductTag extends AuditEntity {

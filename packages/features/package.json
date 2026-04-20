@@ -5,14 +5,18 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./products": "./dist/products/index.js",
+    "./shared": "./dist/shared/index.js"
   },
   "scripts": {
     "build": "tsc"
   },
   "dependencies": {
+    "@repo/config": "workspace:*",
     "@repo/database": "workspace:*",
-    "@repo/config": "workspace:*"
+    "@repo/errors": "workspace:*",
+    "@repo/logger": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
