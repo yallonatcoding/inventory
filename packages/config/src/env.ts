@@ -34,17 +34,7 @@ export const validateNextEnv = (env: Record<string, unknown>) => validateEnv(nex
 export const validateSeedEnv = (env: Record<string, unknown>) => validateEnv(seedEnvSchema, env, 'seeds');
 export const validateDbEnv = (env: Record<string, unknown>) => validateEnv(baseSchema, env, 'database');
 
-let cachedDbEnv: DbEnv | null = null;
-
-export const getDbEnv = (): DbEnv => {
-  if (!cachedDbEnv) {
-    cachedDbEnv = validateDbEnv(process.env);
-  }
-
-  return cachedDbEnv;
-};
-
-export function validateEnv<T extends z.ZodTypeAny>(
+function validateEnv<T extends z.ZodTypeAny>(
   schema: T,
   env: Record<string, unknown>,
   context: string
