@@ -1,8 +1,8 @@
 import pino from 'pino';
 import { LoggerInterface } from '../interfaces/logger.interface';
-import { validateNestEnv } from '@repo/config';
+import { validateCoreEnv } from '@repo/config';
 
-const env = validateNestEnv(process.env);
+const env = validateCoreEnv(process.env);
 
 export class PinoLogger implements LoggerInterface {
   private logger: pino.Logger;
