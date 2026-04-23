@@ -1,4 +1,4 @@
-export function sanitizeName(input?: string): string | undefined {
+export function sanitizeString(input?: string): string | undefined {
   if (!input || typeof input !== 'string') return undefined;
 
   let sanitized = input.trim().toLowerCase();

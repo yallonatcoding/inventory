@@ -12,16 +12,33 @@ export class ProductService {
 
   async create(input: CreateProductDTO) {
     try {
-      const product = await this.repo.create(input);
-      return product;
+      return await this.repo.create(input);
     } catch (error) {
       if (error instanceof AppError) throw error;
-      this.logger.error(`Error: ${(error as Error).message ?? 'Unknown error'}`, {
+
+      this.logger.error((error as Error)?.message ?? 'Unknown error', {
         feature: 'Product',
         method: 'create',
-        error: error,
+        error,
       });
-      throw createError(ProductErrorCode.PRODUCT_ALREADY_EXISTS);
+
+      throw createError(ProductErrorCode.PRODUCT_CREATE_ERROR);
+    }
+  }
+
+  async getAll() {
+    try {
+      return await this.repo.getAll();
+    } catch (error) {
+      if (error instanceof AppError) throw error;
+
+      this.logger.error((error as Error)?.message ?? 'Unknown error', {
+        feature: 'Product',
+        method: 'getAll',
+        error,
+      });
+
+      throw createError(ProductErrorCode.PRODUCT_SERVICE_UNAVAILABLE);
     }
   }
 }
