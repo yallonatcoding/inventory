@@ -1,19 +1,20 @@
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
-import { validateDbEnv } from '@repo/config';
-import * as schema from '@repo/database';
+import * as schema from '@repo/database/schema';
+import { env } from '@/shared/config/env';
 
-let _db: ReturnType<typeof drizzle<typeof schema>> | null = null;
+const globalForDb = globalThis as unknown as {
+  pool?: Pool;
+};
 
-export function getDb() {
-  if (_db) return _db;
-
-  const env = validateDbEnv(process.env);
-
-  const pool = new Pool({
+const pool =
+  globalForDb.pool ??
+  new Pool({
     connectionString: env.DATABASE_URL,
   });
 
-  _db = drizzle(pool, { schema });
-  return _db;
-} 
+if (env.NODE_ENV !== 'production') {
+  globalForDb.pool = pool;
+}
+
+export const db = drizzle(pool, { schema });
