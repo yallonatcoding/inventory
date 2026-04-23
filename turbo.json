@@ -6,6 +6,9 @@
       "dependsOn": [
         "^build"
       ],
+      "env": [
+        "SKIP_ENV_VALIDATION"
+      ],
       "inputs": [
         "$TURBO_DEFAULT$",
         ".env*"

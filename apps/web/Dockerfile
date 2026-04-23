@@ -19,7 +19,7 @@ COPY --from=prune /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 RUN pnpm install --frozen-lockfile
 COPY --from=prune /app/out/full/ ./
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN pnpm exec turbo build --filter=web...
+RUN SKIP_ENV_VALIDATION=true pnpm exec turbo build --filter=web...
 
 # ---------- PROD ----------
 FROM node:${NODE_VERSION}-alpine AS runner

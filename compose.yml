@@ -1,7 +1,7 @@
 services:
   web:
     env_file:
-      - ./apps/web/.env.local
+      - ./apps/web/.env
     container_name: web
     build:
       context: .

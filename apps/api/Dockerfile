@@ -25,7 +25,7 @@ COPY --from=prune /app/out/json/ ./
 COPY --from=prune /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
 RUN pnpm install --frozen-lockfile
 COPY --from=prune /app/out/full/ ./
-RUN pnpm exec turbo build
+RUN SKIP_ENV_VALIDATION=true pnpm exec turbo build
 
 # ---------- PROD ----------
 FROM node:${NODE_VERSION}-alpine AS runner
