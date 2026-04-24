@@ -1,0 +1,27 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile.dev
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/apps/web/.next
+    environment:
+      WATCHPACK_POLLING: "true"
+      CHOKIDAR_USEPOLLING: "true"
+
+  api:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile.dev
+    ports:
+      - 3001:3001
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  db:
+    restart: unless-stopped
