@@ -1,4 +1,3 @@
-// apps/web/src/features/products/components/products-table.tsx
 'use client';
 
 import * as React from 'react';
@@ -33,7 +32,6 @@ import type { Product } from '@repo/features/products';
 
 export function ProductsTable() {
   const { data = [], isLoading, isError, refetch } = useGetProductsQuery();
-
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = React.useState('');
 
