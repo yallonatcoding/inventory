@@ -1,11 +1,8 @@
+import "./globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Providers } from "./providers";
-import "../styles/globals.css";
-import { Geist } from "next/font/google";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+import Shell from "@/components/layout/shell";
 
 const geistSans = localFont({
   src: "../../public/fonts/GeistVF.woff",
@@ -27,9 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
+    <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Shell>
+            {children}
+          </Shell>
+        </Providers>
       </body>
     </html>
   );
